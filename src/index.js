@@ -5,7 +5,7 @@ import { debounce } from '../node_modules/debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { showCounterList, showCounterCards } from './templates';
 
-console.log(fetchCountries);
+
 const DEBOUNCE_DELAY = 300;
 
 const searchBox = document.querySelector('#search-box');
@@ -25,7 +25,8 @@ function onSearch(e) {
     }
 
     fetchCountries(searchCountry.trim())
-    .then(countries => {
+        .then(countries => {
+        console.log(countries)
     if (countries.length > 10) {
         Notify.info('Воооууууу');
          countryList.innerHTML = "";
