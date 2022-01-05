@@ -28,7 +28,7 @@ function onSearch(e) {
         .then(countries => {
         console.log(countries)
     if (countries.length > 10) {
-        Notify.info('Воооууууу');
+        Notify.info('Too many matches found. Please enter a more specific name.');
          countryList.innerHTML = "";
         countryInfo.innerHTML = "";
         return;
@@ -46,7 +46,7 @@ function onSearch(e) {
         }
     })
     .catch(error => {
-        Notify.failure('Qui timide rogat docet negare');
+        Notify.failure('Oops, there is no country with that name');
         countryList.innerHTML = "";
         countryInfo.innerHTML = "";
         return error;
