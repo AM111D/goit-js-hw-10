@@ -46,10 +46,11 @@ function renderCountries(searchName) {
     );
   }
   if (searchName.length === 1) {
+    console.log('kyky');
     refs.countryList.innerHTML = '';
     refs.countryInfo.innerHTML = '';
 
-    refs.countryList.insertAdjacentHTML(
+    refs.countryInfo.insertAdjacentHTML(
       'afterbegin',
       renderOneCard(searchName)
     );
@@ -77,15 +78,15 @@ function renderListCountry(searchName) {
 function renderOneCard(searchName) {
   const card = searchName;
   return card
-    .map(({ flag, language, name, capital, population }) => {
+    .map(({ name, capital, population, flags, languages }) => {
       return `
     <li>
-  <img src="${flag.svg}" alt="${name.official}">
+  <img src="${flags.svg}" alt="${name.official}" width='150px'>
   <h2>${name.official}</h2>
 </li>
 <li><span>Capital:<span></span>${capital}</span></li>
 <li><span>Population:<span></span>${population}</span></li>
-<li><span>Lenguages:<span></span>${language}</span></li>`;
+<li><span>Lenguages:<span></span>${Object.values(languages)}</span></li>`;
     })
     .join('');
 }
