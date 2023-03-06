@@ -11,6 +11,8 @@ const refs = {
   countryInfo: document.querySelector('.country-info'),
 };
 
+refs.countryList.classList.add('countryList');
+
 refs.searchForm.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(e) {
@@ -39,6 +41,8 @@ function renderCountries(searchName) {
   }
   if (searchName.length >= 2 && searchName.length <= 10) {
     console.log(searchName);
+    refs.countryList.innerHTML = '';
+    refs.countryInfo.innerHTML = '';
 
     refs.countryList.insertAdjacentHTML(
       'afterbegin',
@@ -67,9 +71,9 @@ function renderListCountry(searchName) {
   return murkUp
     .map(({ flags, name }) => {
       return `
-        <li>
-          <img src="${flags.png}" alt="" width='100px'>
-          <p>${name.official}</p>
+        <li class='countryListiItem'>
+          <img src="${flags.png}" alt="" width='80px' height='50px'>
+          <p class='countryListiItem_text'>${name.official}</p>
         </li>`;
     })
     .join('');
@@ -80,13 +84,15 @@ function renderOneCard(searchName) {
   return card
     .map(({ name, capital, population, flags, languages }) => {
       return `
-    <li>
-  <img src="${flags.svg}" alt="${name.official}" width='150px'>
-  <h2>${name.official}</h2>
+    <li class='country-info_item'>
+  <img src="${flags.svg}" alt="${name.official}" width='100px height='50px'>
+  <h2 class='country-info_item_name'>${name.official}</h2>
 </li>
-<li><span>Capital:<span></span>${capital}</span></li>
-<li><span>Population:<span></span>${population}</span></li>
-<li><span>Lenguages:<span></span>${Object.values(languages)}</span></li>`;
+<li><span class = 'country-info_item_text'>Capital:</span><span class = 'country-info_item_text_markup'>${capital}</span></li>
+<li><span class = 'country-info_item_text'>Population:</span><span class = 'country-info_item_text_markup'>${population}</span></li>
+<li><span class = 'country-info_item_text'>Lenguages:</span><span class = 'country-info_item_text_markup'>${Object.values(
+        languages
+      )}</span></li>`;
     })
     .join('');
 }
