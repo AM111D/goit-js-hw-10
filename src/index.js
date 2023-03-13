@@ -27,7 +27,6 @@ function onSearch(e) {
   }
 
   fetchCountries(searchName).then(renderCountries).catch(onFetchEError);
-  // .finally(() => FormData.reset());
 }
 
 function renderCountries(searchName) {
